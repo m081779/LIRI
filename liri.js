@@ -7,6 +7,7 @@ const arg = process.argv;
 let arg2 = arg[2];
 let song1 = arg[3];
 let song2 = '';
+let rating;
 let counter = 1;
 let interval;
 
@@ -72,9 +73,9 @@ function returnSpotify() {
 		secret: 'b8f57e670581440380bba8780a402e3f'
 	});
  	song1 = concatArguments() || arg[3];
-		if ( song1 === undefined ) {
-	 		song1 = 'I want it that way';
-	 	}
+	if ( song1 === undefined ) {
+ 		song1 = 'I want it that way';
+ 	}
  	let songTitle = song2 || song1;
  	let queryObj = {
 		type: 'track', 
@@ -91,6 +92,8 @@ function returnSpotify() {
 		console.log(`A link to the preview: "${track.preview_url}"`);
 		console.log('===================');
 		console.log(`This song comes from the album: "${track.album.name}"`);
+		
+		//text for log.txt
 		let spotifyText = `\nCommand: ${arg2}\n\nThe artist's name is: "${track.artists[0].name}"\n
 The song's name is: "${track.name}"\n
 A link to the preview: "${track.preview_url}"\n
@@ -108,20 +111,19 @@ function returnOMDB() {
 		if ( error ) throw error;
 		let movie = JSON.parse( body );
 		let tomato = movie.Ratings.find( item => item.Source === 'Rotten Tomatoes' );
-		let rating = tomato.Value;
-
 		console.log(`The title is: "${movie.Title}"`);
-		console.log('===================');
+		console.log('===================');		
 		console.log(`Year released: "${movie.Year}"`);
 		console.log('===================');
-		if ( movie.imdbRating !== undefined ) {
-			console.log(`The IMDB rating is: "${movie.imdbRating}"`);
-			console.log('===================');
-		}
-		if ( rating !== undefined ) {
-			console.log(`The Rotten Tomatoes rating is: "${rating}"`);
-			console.log('===================');
-		}
+
+		typeof movie.imdbRating !== 'undefined' ? rating = movie.imdbRating : rating = 'Unrated';
+		console.log(`The IMDB rating is: "${movie.imdbRating}"`);
+		console.log('===================');
+
+		typeof tomato !== 'undefined' ? rating = tomato.Value : rating = 'Unrated';
+		console.log(`The Rotten Tomatoes rating is: "${rating}"`);
+		console.log('===================');
+
 		console.log(`The movie was produced in the country: "${movie.Country}"`);
 		console.log('===================');
 		console.log(`The language the movie is in: "${movie.Language}"`);
@@ -129,6 +131,8 @@ function returnOMDB() {
 		console.log(`Plot summary: "${movie.Plot}"`);
 		console.log('===================');
 		console.log(`List of actors: "${movie.Actors}"`);
+
+		//text for log.txt
 		let omdbText = `\nCommand: ${arg2}\n\nThe title is: "${movie.Title}"\n
 Year released: "${movie.Year}"\n
 The IMDB rating is: "${movie.imdbRating}"\n
@@ -139,7 +143,7 @@ The language the movie is in: "${movie.Language}"\n
 Plot summary: "${movie.Plot}"\n
 List of actors: "${movie.Actors}"\n\n\n\n`;
 
-		fs.appendFile('log.txt', omdbText, ( error ) => {
+		fs.appendFile( 'log.txt', omdbText, ( error ) => {
 			if ( error ) throw error;
 		});
 	});
@@ -160,5 +164,5 @@ let command = {
 	'movie-this': returnOMDB,
 	'do-what-it-says': doWhatItSays
 }
-command[arg2] !== undefined ? command[arg2]() : console.log('I don\'t understand that input.  Please try again.');
+typeof command[arg2] !== undefined ? command[arg2]() : console.log('I don\'t understand that input.  Please try again.');
 // postTweets();

@@ -26,19 +26,17 @@ function returnTweets() {
 	}
 	let twitterText = '\nCommand: ' + arg2 + '\n';
 	client.get( 'statuses/user_timeline', twitterParams, ( error, tweets, response ) => {
-		if (error) throw error;
+		if ( error ) throw error;
 		console.log(`Here is a list of the most recent tweets from user name @${twitterParams.screen_name}`);
-		for (let i = tweets.length-1; i>=0; i--) {
+		for ( let i = tweets.length-1; i >= 0; i-- ) {
 			console.log(`Tweet number ${i+1}: "${tweets[i].text}"`);
-			twitterText+='\nTweet number '+(i+1)+': "'+tweets[i].text+'"\n';
+			twitterText += '\nTweet number ' + (i+1) + ': "' + tweets[i].text + '"\n';
 		}
 		twitterText+='\n\n\n';
 		fs.appendFile('log.txt', twitterText, (error) => {
-			if (error) throw error;
+			if ( error ) throw error;
 		});
-
 	});
-
 }
 
 //hyperbolic praise function
@@ -105,27 +103,22 @@ This song comes from the album: "${track.album.name}"\n\n\n\n`;
 
 function returnOMDB() {
 	let title = concatArguments() || arg[3];
-	let tomatoes = false;
-	let rating = '';
 	let queryURL = `https://www.omdbapi.com/?t=${title}&tomatoes=true&y=&plot=short&apikey=40e9cece`
 	request(queryURL, ( error, response, body ) => {
-		let movie = JSON.parse( body );
-		for ( let i = 0; i < movie.Ratings.length; i++ ) {
-			if ( movie.Ratings[i].Source === 'Rotten Tomatoes' ) {
-				tomatoes = true;
-				rating = movie.Ratings[i].Value;
-			}
-		}
 		if ( error ) throw error;
+		let movie = JSON.parse( body );
+		let tomato = movie.Ratings.find( item => item.Source === 'Rotten Tomatoes' );
+		let rating = tomato.Value;
+
 		console.log(`The title is: "${movie.Title}"`);
 		console.log('===================');
 		console.log(`Year released: "${movie.Year}"`);
 		console.log('===================');
-		if (movie.imdbRating!==undefined) {
+		if ( movie.imdbRating !== undefined ) {
 			console.log(`The IMDB rating is: "${movie.imdbRating}"`);
 			console.log('===================');
 		}
-		if (tomatoes) {
+		if ( rating !== undefined ) {
 			console.log(`The Rotten Tomatoes rating is: "${rating}"`);
 			console.log('===================');
 		}
@@ -146,17 +139,16 @@ The language the movie is in: "${movie.Language}"\n
 Plot summary: "${movie.Plot}"\n
 List of actors: "${movie.Actors}"\n\n\n\n`;
 
-		fs.appendFile('log.txt', omdbText, (error) => {
+		fs.appendFile('log.txt', omdbText, ( error ) => {
 			if ( error ) throw error;
 		});
 	});
 }
 
 function doWhatItSays() {
-	fs.readFile('random.txt', 'utf8', (error, data) => {
+	fs.readFile('random.txt', 'utf8', ( error, data ) => {
 		if ( error ) throw error;
 		let songArr = data.split(','); 
-		// arg2 = songArr[0].trim();
 		song2 = songArr[1].trim();
 		returnSpotify();
 	});
@@ -168,6 +160,5 @@ let command = {
 	'movie-this': returnOMDB,
 	'do-what-it-says': doWhatItSays
 }
-
+command[arg2] !== undefined ? command[arg2]() : console.log('I don\'t understand that input.  Please try again.');
 // postTweets();
-command[arg2]!==undefined ? command[arg2]() : console.log('I don\'t understand that input.  Please try again.');

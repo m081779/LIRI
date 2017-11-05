@@ -74,7 +74,7 @@ function returnSpotify() {
 	});
  	song1 = concatArguments() || arg[3];
 	if ( song1 === undefined ) {
- 		song1 = 'I want it that way';
+ 		song1 = 'gangsta\'s paradise';
  	}
  	let songTitle = song2 || song1;
  	let queryObj = {
@@ -85,15 +85,15 @@ function returnSpotify() {
 	spotify.search( queryObj, ( error, data ) => {
 		if ( error ) throw error;
 		let track = data.tracks.items[0];
-		console.log(`The artist's name is: "${track.artists[0].name}"`)
-		console.log('===================');
-		console.log(`The song's name is: "${track.name}"`);
-		console.log('===================');
-		console.log(`A link to the preview: "${track.preview_url}"`);
-		console.log('===================');
-		console.log(`This song comes from the album: "${track.album.name}"`);
-		
-		//text for log.txt
+		if (typeof track !== 'undefined') {
+			console.log(`The artist's name is: "${track.artists[0].name}"`)
+			console.log('===================');
+			console.log(`The song's name is: "${track.name}"`);
+			console.log('===================');
+			console.log(`A link to the preview: "${track.preview_url}"`);
+			console.log('===================');
+			console.log(`This song comes from the album: "${track.album.name}"`);
+					// text for log.txt
 		let spotifyText = `\nCommand: ${arg2}\n\nThe artist's name is: "${track.artists[0].name}"\n
 The song's name is: "${track.name}"\n
 A link to the preview: "${track.preview_url}"\n
@@ -101,6 +101,11 @@ This song comes from the album: "${track.album.name}"\n\n\n\n`;
 		fs.appendFile('log.txt', spotifyText, function(err) {
 			if ( error ) throw error;	
 		});
+		} else {
+			console.log('I couldn\'t find that song.  Please try again.');
+		}
+		
+
 	});
 }
 
@@ -164,5 +169,5 @@ let command = {
 	'movie-this': returnOMDB,
 	'do-what-it-says': doWhatItSays
 }
-typeof command[arg2] !== undefined ? command[arg2]() : console.log('I don\'t understand that input.  Please try again.');
+typeof command[arg2] !== 'undefined' ? command[arg2]() : console.log('I don\'t understand that input.  Please try again.');
 // postTweets();

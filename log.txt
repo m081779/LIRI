@@ -1,0 +1,90 @@
+
+Command: my-tweets
+
+Tweet number 20: "Man, (Josh || Mickey) is the coolest TA ever."
+
+Tweet number 19: "It's amazing how he is able to manage a full time job as well as his TA duties"
+
+Tweet number 18: "Seriously, he's a brilliant programmer."
+
+Tweet number 17: "I am in no way trying to improve my grade on this assignment"
+
+Tweet number 16: "Do I really have to do this for 20 tweets?"
+
+Tweet number 15: "I don't know if I am going to make it."
+
+Tweet number 14: "{ Gushing praise tweet 1 }"
+
+Tweet number 13: "{ Gushing praise tweet 2 }"
+
+Tweet number 12: "{ Gushing praise tweet 3 }"
+
+Tweet number 11: "{ Gushing praise tweet 4 }"
+
+Tweet number 10: "{ Gushing praise tweet whatever }...I should be using setInterval for this."
+
+Tweet number 9: "{setInterval Gushing praise tweet 1}"
+
+Tweet number 8: "{setInterval Gushing praise tweet 2}"
+
+Tweet number 7: "{setInterval Gushing praise tweet 3}"
+
+Tweet number 6: "{setInterval Gushing praise tweet 4}"
+
+Tweet number 5: "{setInterval Gushing praise tweet 5}"
+
+Tweet number 4: "{setInterval Gushing praise tweet 6}"
+
+Tweet number 3: "{setInterval Gushing praise tweet 7}"
+
+Tweet number 2: "{setInterval Gushing praise tweet 8}"
+
+Tweet number 1: "{setInterval Gushing praise tweet 9}"
+
+
+
+
+Command: my-tweets
+
+Tweet number 20: "Man, (Josh || Mickey) is the coolest TA ever."
+
+Tweet number 19: "It's amazing how he is able to manage a full time job as well as his TA duties"
+
+Tweet number 18: "Seriously, he's a brilliant programmer."
+
+Tweet number 17: "I am in no way trying to improve my grade on this assignment"
+
+Tweet number 16: "Do I really have to do this for 20 tweets?"
+
+Tweet number 15: "I don't know if I am going to make it."
+
+Tweet number 14: "{ Gushing praise tweet 1 }"
+
+Tweet number 13: "{ Gushing praise tweet 2 }"
+
+Tweet number 12: "{ Gushing praise tweet 3 }"
+
+Tweet number 11: "{ Gushing praise tweet 4 }"
+
+Tweet number 10: "{ Gushing praise tweet whatever }...I should be using setInterval for this."
+
+Tweet number 9: "{setInterval Gushing praise tweet 1}"
+
+Tweet number 8: "{setInterval Gushing praise tweet 2}"
+
+Tweet number 7: "{setInterval Gushing praise tweet 3}"
+
+Tweet number 6: "{setInterval Gushing praise tweet 4}"
+
+Tweet number 5: "{setInterval Gushing praise tweet 5}"
+
+Tweet number 4: "{setInterval Gushing praise tweet 6}"
+
+Tweet number 3: "{setInterval Gushing praise tweet 7}"
+
+Tweet number 2: "{setInterval Gushing praise tweet 8}"
+
+Tweet number 1: "{setInterval Gushing praise tweet 9}"
+
+
+
